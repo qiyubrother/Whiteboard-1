@@ -1,7 +1,8 @@
-﻿<Window xmlns:my="clr-namespace:WhiteBoardTest"  x:Class="WhiteBoardTest.MainWindow"
+﻿<Window xmlns:my="clr-namespace:WhiteBoardTest"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow"   Width="925" Height="950" WindowStyle="None"  WindowStartupLocation="CenterScreen"   Name="BoardWindow" Loaded="BoardWindow_Loaded"  AllowDrop="True" MouseLeftButtonDown="BoardWindow_MouseLeftButtonDown"  Drop="ImageDrop" DragEnter="ImageDragEnter" SizeToContent="WidthAndHeight" >
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"  x:Class="WhiteBoardTest.MainWindow"
+        Title="MainWindow"   Width="925" Height="950" WindowStyle="None" WindowStartupLocation="CenterScreen"   x:Name="BoardWindow" Loaded="BoardWindow_Loaded" AllowsTransparency="True" AllowDrop="True" MouseLeftButtonDown="BoardWindow_MouseLeftButtonDown"  Drop="ImageDrop" DragEnter="ImageDragEnter" SizeToContent="WidthAndHeight">
     <Window.Resources>
         <ControlTemplate x:Key="GlassButton" TargetType="{x:Type Button}">
             <ControlTemplate.Resources>
@@ -157,10 +158,10 @@
         </Style>
 
 
-        <Style TargetType="Button" x:Key="ButtonStyleReWrite">
+        <Style TargetType="{x:Type Button}" x:Key="ButtonStyleReWrite">
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="Button">
+                    <ControlTemplate TargetType="{x:Type Button}">
                         <Border Background="{TemplateBinding Background}"   BorderBrush="{TemplateBinding BorderBrush}"  BorderThickness="{TemplateBinding BorderThickness}"  CornerRadius="2">
                             <!--<ContentPresenter ContentSource="Content"    ContentTemplate="{TemplateBinding ContentTemplate}"  ContentStringFormat="{TemplateBinding ContentStringFormat}"                                              ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"                                              Margin="{TemplateBinding Padding}" />-->
                         </Border>
@@ -168,10 +169,10 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <Style TargetType="Button" x:Key="ButtonStyleReWriteOnly">
+        <Style TargetType="{x:Type Button}" x:Key="ButtonStyleReWriteOnly">
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="Button">
+                    <ControlTemplate TargetType="{x:Type Button}">
                         <Border Background="{TemplateBinding Background}"   BorderBrush="{TemplateBinding BorderBrush}"  BorderThickness="{TemplateBinding BorderThickness}"  CornerRadius="2">
                             <ContentPresenter ContentSource="Content"    ContentTemplate="{TemplateBinding ContentTemplate}"  ContentStringFormat="{TemplateBinding ContentStringFormat}"                                              ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"                                              Margin="{TemplateBinding Padding}" />
                         </Border>
@@ -179,25 +180,30 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <Style x:Key="ButtonNoramlStyle" TargetType="Button" BasedOn="{StaticResource ButtonStyleReWriteOnly}">
-            <Setter Property="BorderBrush" Value="White">
-            </Setter>
-            <Setter Property="BorderThickness" Value="0">
-            </Setter>
+        <Style x:Key="ButtonNoramlStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource ButtonStyleReWriteOnly}">
+            <Setter Property="BorderBrush" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
             <Style.Triggers>
-                <Trigger Property="Button.IsMouseOver" Value="True">
-                    <Setter Property="BorderThickness" Value="5">
-                    </Setter>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="BorderThickness" Value="5"/>
                 </Trigger>
-                <Trigger Property="Button.IsPressed" Value="True">
-                    <Setter Property="BorderThickness" Value="5"> 
-                    </Setter>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="BorderThickness" Value="5"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
     </Window.Resources>
-    <DockPanel Name="ContentPanel" >
+    <Window.Background>
+        <SolidColorBrush  Opacity="{Binding Value, ElementName=sldstyle}"  Color="Blue" />
+    </Window.Background>
+    <DockPanel x:Name="ContentPanel" >
+        <DockPanel.Background>
+            <SolidColorBrush  Opacity="{Binding Value, ElementName=sldstyle}"  Color="White" />
+        </DockPanel.Background>
         <StackPanel VerticalAlignment="Center">
+            <StackPanel.Background>
+                <SolidColorBrush  Opacity="{Binding Value, ElementName=sldstyle}"  Color="White" />
+            </StackPanel.Background>
             <GroupBox  Width="95" BorderThickness="2,2,2,2" Foreground="Black" Header="画笔颜色" VerticalAlignment="Top" Height="Auto" BorderBrush="#FF3B373B">
                 <StackPanel>
                     <Button Style="{StaticResource ButtonNoramlStyle}"  x:Name="Color_2" HorizontalAlignment="Center" Width="80" Height="30" VerticalAlignment="Top" Margin="0,10" Background="Aqua"  Click="Color_2_Click"/>
@@ -209,43 +215,29 @@
             <GroupBox Width="95" BorderThickness="2,2,2,2" Foreground="Black" Header="画笔粗细" VerticalAlignment="Top" Height="Auto" BorderBrush="#FF3B373B">
                 <StackPanel>
                     <Button Style="{StaticResource ButtonNoramlStyle}"  x:Name="Size_2" HorizontalAlignment="Center" Tag="15" Width="80" Height="30" VerticalAlignment="Top" Margin="0,5"  Background="Transparent" Click="Size_2_Click">
-                        <Button.Content>
-                            <Rectangle Width="15" Height="15" Fill="Black"></Rectangle>
-                        </Button.Content>
+                        <Rectangle Width="15" Height="15" Fill="Black"/>
                     </Button>
                     <Button Style="{StaticResource ButtonNoramlStyle}"  x:Name="Size_3" HorizontalAlignment="Center" Tag="10" Width="80" Height="30" Margin="0,10" VerticalAlignment="Top" Background="Transparent" Click="Size_2_Click">
-                        <Button.Content>
-                            <Rectangle Width="10" Height="10" Fill="Black"></Rectangle>
-                        </Button.Content>
+                        <Rectangle Width="10" Height="10" Fill="Black"/>
                     </Button>
                     <Button Style="{StaticResource ButtonNoramlStyle}"  x:Name="Size_4" HorizontalAlignment="Center" Width="80" Height="30" VerticalAlignment="Top" Tag="5" Margin="0,5" Background="Transparent" Click="Size_2_Click">
-                        <Button.Content>
-                            <Rectangle Width="5" Height="5" Fill="Black"></Rectangle>
-                        </Button.Content>
+                        <Rectangle Width="5" Height="5" Fill="Black"/>
                     </Button>
                     <Button  Style="{StaticResource ButtonNoramlStyle}" x:Name="Size_5" HorizontalAlignment="Center" Width="80" Height="30" VerticalAlignment="Top" Tag="2" Margin="0,5" Background="Transparent" Click="Size_2_Click">
-                        <Button.Content>
-                            <Rectangle Width="2" Height="2" Fill="Black"></Rectangle>
-                        </Button.Content>
+                        <Rectangle Width="2" Height="2" Fill="Black"/>
                     </Button>
                 </StackPanel>
             </GroupBox>
             <GroupBox Width="95" BorderThickness="2,2,2,2" Foreground="Black" Header="工具选取" VerticalAlignment="Top" Height="Auto" BorderBrush="#FF3B373B">
                 <StackPanel>
                     <Button Style="{StaticResource ButtonNoramlStyle}"  x:Name="shape1" HorizontalAlignment="Center" Tag="0" Width="80" Height="30" VerticalAlignment="Top" Margin="0,5"  Background="Transparent" Click="shape_Click">
-                        <Button.Content>
-                            <Rectangle Width="35" Height="18" Fill="Transparent" Stroke="Red"></Rectangle>
-                        </Button.Content>
+                        <Rectangle Width="35" Height="18" Fill="Transparent" Stroke="Red"/>
                     </Button>
                     <Button Style="{StaticResource ButtonNoramlStyle}"  x:Name="shape2" HorizontalAlignment="Center" Tag="1" Width="80" Height="30" Margin="0,10" VerticalAlignment="Top" Background="Transparent" Click="shape_Click">
-                        <Button.Content>
-                            <Ellipse Width="20" Height="18" Fill="Transparent" Stroke="Red"></Ellipse>
-                        </Button.Content>
+                        <Ellipse Width="20" Height="18" Fill="Transparent" Stroke="Red"/>
                     </Button>
                     <Button Style="{StaticResource ButtonNoramlStyle}"  x:Name="shape3" HorizontalAlignment="Center" Width="80" Height="30" VerticalAlignment="Top" Tag="2" Margin="0,5" Background="Transparent" Click="shape_Click">
-                        <Button.Content>
-                            <Line X1="0" X2="50" Y1="0" Y2="0" Stroke="Red" StrokeThickness="1"></Line>
-                        </Button.Content>
+                        <Line X1="0" X2="50" Y1="0" Y2="0" Stroke="Red" StrokeThickness="1"/>
                     </Button>
                     <!--<Button  Style="{StaticResource ButtonNoramlStyle}" x:Name="shape4" HorizontalAlignment="Center" Width="80" Height="30" VerticalAlignment="Top" Tag="3" Margin="0,5" Background="Transparent" Click="shape_Click">
                         <Button.Content>
@@ -263,14 +255,18 @@
                     </Button>-->
                 </StackPanel>
             </GroupBox>
+            <GroupBox Header="透明度调节" Width="95" VerticalAlignment="Top" BorderThickness="2,2,2,2" Foreground="Black" Height="Auto" BorderBrush="#FF3B373B">
+                <Slider Margin="0,0,-2.333,0" Maximum="1" Minimum="0" x:Name ="sldstyle" IsEnabled="True" HorizontalAlignment="Left" Width="85" Height="15"/>
+            </GroupBox>
         </StackPanel>
-       
-        
-        <Border  Background="#FF3B373B" BorderThickness="5,5,5,5" CornerRadius="8,8,8,8" DockPanel.Dock="Top"  BorderBrush="#C7D2DD">
-            <InkCanvas Margin="10,10,10,10" Name="inkContent" UseCustomCursor="True"  EditingModeInverted="Ink"  EditingMode="Ink" >
-            </InkCanvas>
+        <Border BorderThickness="5,5,5,5" CornerRadius="8,8,8,8" DockPanel.Dock="Top"  BorderBrush="#C7D2DD" Opacity="{Binding Value, ElementName=sldstyle}">
+            <Border.Background>
+                <SolidColorBrush  Opacity="{Binding Value, ElementName=sldstyle}"  Color="#FF3B373B" />
+            </Border.Background>
+            <StackPanel Margin="0,0,0,0">
+                <InkCanvas Margin="10,10,10,10" x:Name="inkContent" UseCustomCursor="True"  EditingModeInverted="Ink"  EditingMode="Ink" d:IsHidden="True" />
+            </StackPanel>
         </Border>
         <!--<Canvas DockPanel.Dock="Right" Background="Beige" Width="415" ></Canvas>-->
-       
     </DockPanel>
 </Window>

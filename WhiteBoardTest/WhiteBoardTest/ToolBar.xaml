@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WhiteBoardTest"
         mc:Ignorable="d"
-        Title="ToolWindow" Height="60" Width="580" ResizeMode="NoResize" WindowStyle="None" MouseLeftButtonDown="BoardWindow_MouseLeftButtonDown">
+        Title="ToolWindow" Height="60" Width="650" ResizeMode="NoResize" WindowStyle="None" MouseLeftButtonDown="BoardWindow_MouseLeftButtonDown">
     <StackPanel Height="60" DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Center">
         <Button Width="60" Height="60" ToolTip="保存" Margin="5,0" Foreground="White" Click="SaveDrwsing_Click" Name="SaveDrwsing">
             <Image Height="60" Width="60" Source="images/保存.png"/>
