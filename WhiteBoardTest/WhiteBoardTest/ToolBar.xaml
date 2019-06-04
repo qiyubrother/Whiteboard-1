@@ -10,7 +10,10 @@
         <Button Width="60" Height="60" ToolTip="保存" Margin="5,0" Foreground="White" Click="SaveDrwsing_Click" Name="SaveDrwsing">
             <Image Height="60" Width="60" Source="images/保存.png"/>
         </Button>
-        <Button Width="60" Height="60" ToolTip="清空画板" Foreground="White" Name="ClearOnec">
+        <Button Width="60" Height="60" ToolTip="橡皮擦" Margin="5,0" Foreground="White" Click="Rubber_Click" Name="Rubber">
+            <Image Height="60" Width="60" Source="images/橡皮擦.jpg"/> 
+        </Button>
+        <Button Width="60" Height="60" ToolTip="清空画板" Foreground="White" Click="ClearOnec_Click" Name="ClearOnec">
             <Image Height="60" Width="60" Source="images/清空画板.png"/>
         </Button>
         <Button Width="60" Height="60" ToolTip="撤销上一笔" Margin="5,0" Foreground="White" Click="CancelOnec_Click" Name="CancelOnec">

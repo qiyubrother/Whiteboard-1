@@ -50,7 +50,7 @@ namespace WhiteBoardTest
             //大背景玻璃效果
             this.Background = Brushes.Transparent;
             ExtendAeroGlass(this);
-            ToolBar toolbar = new ToolBar();
+            ToolBar toolbar = new ToolBar(this);
             toolbar.Show();
         }
 
@@ -276,6 +276,9 @@ namespace WhiteBoardTest
 
 
         }
+
+      
+
         //清除所有
         private void ClearOnec_Click(object sender, RoutedEventArgs e)
         {
@@ -496,6 +499,8 @@ namespace WhiteBoardTest
         }
 
 
+
+
         //保存成ink并加载
         //private void Window_Initialized(object sender, EventArgs e)
         //{
@@ -512,8 +517,6 @@ namespace WhiteBoardTest
         //    f.Close();
         //}
         #endregion
-
-      
 
     }
 }

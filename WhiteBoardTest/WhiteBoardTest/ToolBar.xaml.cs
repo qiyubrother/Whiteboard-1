@@ -25,17 +25,18 @@ namespace WhiteBoardTest
     /// </summary>
     public partial class ToolBar : Window
     {
-        static MainWindow mainWindow = new MainWindow();
-        InkCanvas inkContent = mainWindow.WhiteBoardConvas;
-        public ToolBar()
+        static InkCanvas inkContent;
+        public ToolBar(MainWindow mainWindow)
         {
+            inkContent = mainWindow.WhiteBoardConvas;
             InitializeComponent();
-            
+
         }
 
-           
 
-        # region
+
+
+        #region
         //工具条Button1：保存为图片
         private void SaveDrwsing_Click(object sender, RoutedEventArgs e)
         {
@@ -99,7 +100,25 @@ namespace WhiteBoardTest
         }
         #endregion
 
+        // 橡皮擦
+        private void Rubber_Click(object sender, RoutedEventArgs e)
+        {
+            if (inkContent.EditingMode == InkCanvasEditingMode.Ink)
+            {
+                inkContent.EditingMode = InkCanvasEditingMode.EraseByPoint;
+            }
+            else
+            {
+                inkContent.EditingMode = InkCanvasEditingMode.Ink;
+            }
+        }
 
+        // 清除所有
+        private void ClearOnec_Click(object sender, RoutedEventArgs e)
+        {
+            StrokeCollection s = inkContent.Strokes;
+            s.Clear();
+        }
         //撤销上一笔
         private void CancelOnec_Click(object sender, RoutedEventArgs e)
         {
