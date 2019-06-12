@@ -144,10 +144,7 @@ namespace WhiteBoardTest
             return p;
         }
 
-    
-
      
-
        #region 整个窗口透明化 
         private void ExtendAeroGlass(Window window)
         {
@@ -258,46 +255,6 @@ namespace WhiteBoardTest
        
 
         #region 事件处理
-        //关闭白板
-        private void CloseButton_Click(object sender, RoutedEventArgs e)
-        {
-
-            MessageBoxResult result = MessageBox.Show("确定要关闭手写板？", "", MessageBoxButton.OKCancel);
-            switch (result)
-            {
-                case MessageBoxResult.OK:
-                    BoardWindow.Close();
-                    break;
-                case MessageBoxResult.Cancel:
-                    // ...
-                    break;
-            }
-
-
-
-        }
-
-      
-
-        //清除所有
-        private void ClearOnec_Click(object sender, RoutedEventArgs e)
-        {
-         
-            inkContent.Strokes.Clear();
-            inkContent.Children.Clear();
-        
-        }
-
-
-       
-        //撤销上一笔
-        private void CancelOnec_Click(object sender, RoutedEventArgs e)
-        {
-
-            StrokeCollection s = inkContent.Strokes;
-            if (s.Count>0)
-            s.Remove(s[s.Count-1]);
-        }
 
         //颜色选取
         private void Color_2_Click(object sender, RoutedEventArgs e)

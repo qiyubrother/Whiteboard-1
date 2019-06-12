@@ -25,17 +25,21 @@ namespace WhiteBoardTest
     /// </summary>
     public partial class ToolBar : Window
     {
+        static Window BoardWindow;
         static InkCanvas inkContent;
+
+        public Color DefalutColor { get; private set; }
+        public double DefalutSize { get; private set; }
+
         public ToolBar(MainWindow mainWindow)
         {
+            BoardWindow = mainWindow;
             inkContent = mainWindow.WhiteBoardConvas;
             InitializeComponent();
-
+            this.WindowStartupLocation = WindowStartupLocation.Manual;
+            this.Left = 1000;
+            this.Top = 700;
         }
-
-
-
-
         #region
         //工具条Button1：保存为图片
         private void SaveDrwsing_Click(object sender, RoutedEventArgs e)
@@ -134,5 +138,58 @@ namespace WhiteBoardTest
             this.DragMove();
         }
 
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                this.DragMove();
+        }
+
+
+        //关闭白板
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+
+            MessageBoxResult result = MessageBox.Show("确定要关闭手写板？", "", MessageBoxButton.OKCancel);
+            switch (result)
+            {
+                case MessageBoxResult.OK:
+                    BoardWindow.Close();
+                    ToolBarWindow.Close();
+                    break;
+                case MessageBoxResult.Cancel:
+                    // ...
+                    break;
+            }
+
+
+
+        }
+
+        private void Size_2_Click(object sender, RoutedEventArgs e)
+        {
+            Button btn = sender as Button;
+            var obj = btn.Tag as string;
+            DrawingAttributes inkDA = new DrawingAttributes();
+            inkDA.Color = inkContent.DefaultDrawingAttributes.Color;
+            inkDA.Width = Convert.ToDouble(obj);
+            inkDA.Height = Convert.ToDouble(obj);
+            inkDA.IsHighlighter = inkContent.DefaultDrawingAttributes.IsHighlighter;
+            inkContent.DefaultDrawingAttributes = inkDA;
+            DefalutColor = inkDA.Color;
+            DefalutSize = inkDA.Width;
+        }
+        //颜色选取
+        private void Color_2_Click(object sender, RoutedEventArgs e)
+        {
+            Button btn = sender as Button;
+            DrawingAttributes inkDA = new DrawingAttributes();
+            inkDA.Color = ((SolidColorBrush)btn.Background).Color;
+            inkDA.Width = inkContent.DefaultDrawingAttributes.Width;
+            inkDA.Height = inkContent.DefaultDrawingAttributes.Height;
+            inkDA.IsHighlighter = inkContent.DefaultDrawingAttributes.IsHighlighter;
+            inkContent.DefaultDrawingAttributes = inkDA;
+            DefalutColor = inkDA.Color;
+            DefalutSize = inkDA.Width;
+        }
     }
 }
