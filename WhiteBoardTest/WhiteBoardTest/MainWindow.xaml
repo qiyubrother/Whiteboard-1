@@ -54,7 +54,7 @@
             </Border>
             <ControlTemplate.Triggers>
                 <Trigger Property="IsPressed" Value="True">
-                    <Setter Property="Opacity" TargetName="shine" Value="0.4"/>
+                    <Setter Property="Opacity" TargetName="shine" Value="0.0"/>
                     <Setter Property="Background" TargetName="border" Value="#CC000000"/>
                     <Setter Property="Visibility" TargetName="glow" Value="Hidden"/>
                 </Trigger>

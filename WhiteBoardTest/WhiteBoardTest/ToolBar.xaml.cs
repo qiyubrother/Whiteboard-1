@@ -191,5 +191,14 @@ namespace WhiteBoardTest
             DefalutColor = inkDA.Color;
             DefalutSize = inkDA.Width;
         }
+
+        private void Sldstyle_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            Slider sld = sender as Slider;
+            inkContent.Background.Opacity = sld.Value;
+            //SolidColorBrush brush = new SolidColorBrush();
+            //brush.Opacity = sld.Value;
+            //inkContent.Background = brush;
+        }
     }
 }

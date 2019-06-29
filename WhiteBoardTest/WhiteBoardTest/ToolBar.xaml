@@ -45,9 +45,9 @@
                 <Button  x:Name="Color_5" HorizontalAlignment="Center" Width="80" Height="30" VerticalAlignment="Top" Margin="0,10" Background="Red"  Click="Color_2_Click"/>
             </StackPanel>
         </ComboBox>
-        <GroupBox Width="60" Height="60" Margin="5,0" ToolTip="透明度调节" VerticalAlignment="Top" BorderThickness="2,2,2,2" Foreground="White">
-            <Slider Margin="0,0,-2.333,0" Maximum="1" Minimum="0" x:Name ="sldstyle" IsEnabled="True" HorizontalAlignment="Left" Width="85" Height="15"/>
-        </GroupBox>
+        <ComboBox Width="60" Height="60" Margin="5,0" ToolTip="透明度调节" Foreground="White" BorderThickness="2,2,2,2" >
+            <Slider Maximum="1" Minimum="0" x:Name ="sldstyle" IsEnabled="True" Orientation="Vertical" VerticalAlignment="Top" ValueChanged="Sldstyle_ValueChanged" Margin="15,0" Width="15" Height="85"/>
+        </ComboBox>
         <Button Width="60" Height="60" Content="计算器" Foreground="White" Name="CounterBtn" ></Button>
         <Button Width="60" Height="60" Margin="5,0" Foreground="White" Click="CloseButton_Click" Name="CloseButton"  HorizontalAlignment="Right" >
             <Image Height="60" Width="60" Source="images/关闭.png"/>
