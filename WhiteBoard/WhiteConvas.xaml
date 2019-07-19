@@ -1,0 +1,97 @@
+﻿<Window x:Class="WhiteBoard.WhiteConvas"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WhiteBoard"
+      mc:Ignorable="d" 
+      d:DesignHeight="620" d:DesignWidth="700"
+      Title="WhiteConvas" WindowStyle="None" WindowStartupLocation="CenterScreen" x:Name="BoardWindow" AllowsTransparency="True" AllowDrop="True" MouseLeftButtonDown="BoardWindow_MouseLeftButtonDown" SizeToContent="WidthAndHeight">
+    <Window.Resources>
+        <Storyboard x:Key="StoryboardRightImage">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="RightPage">
+                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0.8"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="RightPage">
+                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0.8"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="StoryboardLeftImage">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="LeftPage">
+                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0.8"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="LeftPage">
+                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0.8"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+    <StackPanel DockPanel.Dock="Top">
+        <Border BorderThickness="5,5,5,0" DockPanel.Dock="Top"  BorderBrush="#C7D2DD">
+            <Grid Height="600">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition x:Name="LeftGrid" Width="50"/>
+                    <ColumnDefinition x:Name="CenterGrid" Width="*"/>
+                    <ColumnDefinition x:Name="RightGrid" Width="50"/>
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Column="1" Name="InkCovasBorder" VerticalAlignment="Center" BorderThickness="2,0,2,0" DockPanel.Dock="Top"  BorderBrush="#C7D2DD">
+                    <Canvas x:Name="MainConvas" Height="600" Width="600" >
+                        <WrapPanel Canvas.Left="0" x:Name="ContentPanel" Width="{Binding ActualWidth, ElementName=canvasPageContent, Mode=OneWay}" Height="{Binding ActualHeight, ElementName=canvasPageContent, Mode=OneWay}" ManipulationStarting="touchGrid_ManipulationStarting"  
+                ManipulationDelta="touchGrid_ManipulationDelta"
+                ManipulationCompleted="touchGride_ManipulationCompleted">
+                            <WrapPanel.Background>
+                                <SolidColorBrush  Opacity="{Binding Value, ElementName=sldstyle}"  Color="White" />
+                            </WrapPanel.Background>
+                            <WrapPanel.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </WrapPanel.RenderTransform>
+                        </WrapPanel>
+                    </Canvas>
+                </Border>
+                
+                <Image x:Name="LeftPage" Grid.Column="0" Height="100" Width="50" Source="images/左侧页.png" MouseEnter="imageLeft_MouseEnter" MouseLeave="imageLeft_MouseLeave"
+                       MouseLeftButtonDown="imageLeft_MouseLeftButtonDown" >
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
+                
+                <Image x:Name="RightPage" Grid.Column="2" Height="100" Width="50" Source="images/右侧页.png" MouseEnter="imageRight_MouseEnter" MouseLeave="imageRight_MouseLeave" 
+                       MouseLeftButtonDown="imageRight_MouseLeftButtonDown" >
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
+            </Grid>
+        </Border>
+        <Border Height="20" VerticalAlignment="Bottom" Background="#FF3B373B" BorderThickness="5,5,5,5" DockPanel.Dock="Top"  BorderBrush="#C7D2DD">
+            <local:PageBar HorizontalAlignment="Center" x:Name="pageBar" VerticalAlignment="Center" Visibility="Hidden"/>
+        </Border>
+    </StackPanel>
+        
+    
+    
+</Window>

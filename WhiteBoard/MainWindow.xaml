@@ -1,0 +1,59 @@
+﻿<Window x:Class="WhiteBoard.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WhiteBoard"
+        mc:Ignorable="d"
+        Title="MainWindow" x:Name="ToolBarWindow" Height="60" Width="500" WindowStyle="None" ResizeMode="NoResize" 
+        WindowStartupLocation="Manual" MouseLeftButtonDown="BoardWindow_MouseLeftButtonDown">
+    <ToolBar x:Name="ToolBar" Band="1" BandIndex="1" Width="500" Height="60" MouseLeftButtonDown="Window_MouseDown" ToolBarTray.IsLocked="True">
+        <Button Width="60" Height="60" ToolTip="保存" Margin="5,0" Foreground="White" Click="SaveDrwsing_Click" Name="SaveDrwsing">
+            <Image Height="60" Width="60" Source="images/保存.png"/>
+        </Button>
+        <Button Width="60" Height="60" ToolTip="橡皮擦" Foreground="White" Click="Rubber_Click" Name="Rubber">
+            <Image Height="60" Width="60" Source="images/橡皮擦.png"/>
+        </Button>
+        <Button Width="60" Height="60" ToolTip="清空画板" Foreground="White" Click="ClearOnec_Click" Name="ClearOnec">
+            <Image Height="60" Width="60" Source="images/清空画板.png"/>
+        </Button>
+        <Button Width="60" Height="60" ToolTip="撤销上一笔" Margin="5,0" Foreground="White" Click="CancelOnec_Click" Name="CancelOnec">
+            <Image Height="60" Width="60" Source="images/撤销上一笔.png"/>
+        </Button>
+
+        <ComboBox Width="60" Height="60" Foreground="White" ToolTip="调节粗细">
+            <ComboBox.Background>
+                <ImageBrush ImageSource="images/调节粗细.png" ></ImageBrush>
+            </ComboBox.Background>
+            <Button x:Name="eSize_2" HorizontalAlignment="Center" Tag="15" Width="80" Height="30" VerticalAlignment="Top" Margin="0,5"  Background="Transparent" Click="Size_2_Click">
+                <Rectangle Width="15" Height="15" Fill="Black"/>
+            </Button>
+            <Button x:Name="eSize_3" HorizontalAlignment="Center" Tag="10" Width="80" Height="30" Margin="0,10" VerticalAlignment="Top" Background="Transparent" Click="Size_2_Click">
+                <Rectangle Width="10" Height="10" Fill="Black"/>
+            </Button>
+            <Button x:Name="eSize_4" HorizontalAlignment="Center" Width="80" Height="30" VerticalAlignment="Top" Tag="5" Margin="0,5" Background="Transparent" Click="Size_2_Click">
+                <Rectangle Width="5" Height="5" Fill="Black"/>
+            </Button>
+            <Button x:Name="eSize_5" HorizontalAlignment="Center" Width="80" Height="30" VerticalAlignment="Top" Tag="2" Margin="0,5" Background="Transparent" Click="Size_2_Click">
+                <Rectangle Width="2" Height="2" Fill="Black"/>
+            </Button>
+        </ComboBox>
+        <ComboBox Width="60" Height="60" Margin="5,0" ToolTip="改变颜色" Foreground="White" Name="RotateWindow" >
+            <StackPanel>
+                <Button  x:Name="Color_2" HorizontalAlignment="Center" Width="80" Height="30" VerticalAlignment="Top" Margin="0,10" Background="Aqua"  Click="Color_2_Click"/>
+                <Button  x:Name="Color_3" HorizontalAlignment="Center" Width="80" Height="30" Margin="0,10" VerticalAlignment="Top" Background="Beige"  Click="Color_2_Click"/>
+                <Button  x:Name="Color_4" HorizontalAlignment="Center" Width="80" Height="30" VerticalAlignment="Top" Margin="0,10" Background="Black"  Click="Color_2_Click"/>
+                <Button  x:Name="Color_5" HorizontalAlignment="Center" Width="80" Height="30" VerticalAlignment="Top" Margin="0,10" Background="Red"  Click="Color_2_Click"/>
+            </StackPanel>
+        </ComboBox>
+        <!--
+        <GroupBox Width="60" Height="60" Margin="5,0" ToolTip="透明度调节" VerticalAlignment="Top" BorderThickness="2,2,2,2" Foreground="White">
+            <Slider Margin="0,0,-2.333,0" Maximum="1" Minimum="0" x:Name ="sldstyle" IsEnabled="True" HorizontalAlignment="Left" Width="85" Height="15"/>
+        </GroupBox>
+        -->
+        <Button Width="60" Height="60" Content="添加新页" ToolTip="添加新页" Click="AddNewPage" Foreground="Black" Name="CounterBtn" ></Button>
+        <Button Width="60" Height="60" Margin="5,0" Foreground="White" Click="CloseButton_Click" Name="CloseButton"  HorizontalAlignment="Right" >
+            <Image Height="60" Width="60" Source="images/关闭.png"/>
+        </Button>
+    </ToolBar>
+</Window>
